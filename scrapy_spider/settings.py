@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'scrapy_spider.pipelines.SinaSpiderPipeline': 300,
+   # 'scrapy_spider.pipelines.SinaSpiderPipeline': 300,
    'scrapy_spider.pipelines.QQSpiderPipeline': 300
 }
 

@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 import scrapy
 from scrapy_spider.items import SpiderItem
+from scrapy_spider.parse_url import parse
 
 class qq_search_spider(scrapy.Spider):
     name = "qq_search_spider"
@@ -10,8 +11,8 @@ class qq_search_spider(scrapy.Spider):
         self.count = 0
 
     def start_requests(self):
-        base_url = "http://news.sogou.com/news?mode=1&manual=true&query=site:qq.com+'零售'&sort=0&page=2&p=42230302&dp=%s"
-        for i in range(0, 2, 1):
+        base_url = "http://news.sogou.com/news?mode=1&manual=true&query=site:qq.com+'零售'&sort=0&page=%s&dp=1"
+        for i in range(1, 2, 1):
             url = base_url % i
             yield scrapy.Request(url=url, callback=self.parse)
 
@@ -21,13 +22,18 @@ class qq_search_spider(scrapy.Spider):
             info = section.xpath('.//a')[0]
             link = info.xpath('@href').extract()[0].encode('utf-8')
             title = "".join(info.xpath('text()').extract()).encode('utf-8')
-
             author = "".join(section.xpath('.//p/text()').extract()).encode('utf-8')
-
+            print '------------------------------', link
+            result = parse(link)
+            print result
             item = SpiderItem()
             item['title'] = title
             item['link'] = link
-            item['author'] = author
+            item['author'] = result['author']
+            item['createTime'] = result['createTime']
+            item['remarkCnt'] = result['remarkCnt']
+            item['content'] = result['content']
+            item['source'] = result['source']
             items.append(item)
             self.count += 1
 

@@ -14,4 +14,8 @@ class SpiderItem(scrapy.Item):
     title = scrapy.Field()
     link = scrapy.Field()
     author = scrapy.Field()
+    content = scrapy.Field()
+    createTime = scrapy.Field()
+    remarkCnt = scrapy.Field()
+    source = scrapy.Field()
     pass
