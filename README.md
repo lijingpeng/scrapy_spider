@@ -12,11 +12,9 @@ https://github.com/lijingpeng/scrapy-development-docker
 具体操作步骤如下（首先确保你已经安装了docker）：  
 1. 编译  
 > docker build -t scrapy .
-
 2. 进入容器  
 > docker run -v ~/scrapy_spider:/opt/dev -it scrapy  /bin/bash
 注：-v 参数映射本地代码到容器中
-
 3. 执行  
 > scrapy crawl qq_search_spider
 
