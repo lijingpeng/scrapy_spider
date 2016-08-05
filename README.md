@@ -2,7 +2,7 @@ scrapy_spider
 ----
 Scrapy爬虫示例
 
-本地化执行：  
+本地化执行(注意，要在项目根目录下执行)：  
 > scrapy crawl qq_search_spider
 
 容器化

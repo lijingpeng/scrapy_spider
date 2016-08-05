@@ -17,7 +17,6 @@ class qq_search_spider(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
-        items = []
         for section in response.xpath('//div[@class="vrwrap"]'):
             info = section.xpath('.//a')[0]
             link = info.xpath('@href').extract()[0].encode('utf-8')
@@ -36,7 +35,6 @@ class qq_search_spider(scrapy.Spider):
             item['remarkCnt'] = result['remarkCnt']
             item['content'] = result['content']
             item['source'] = result['source']
-            items.append(item)
             self.count += 1
             print '###########current parsed:', self.count
 
