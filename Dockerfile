@@ -33,10 +33,5 @@ RUN pip install boto3
 RUN pip install beautifulsoup4 requests 
 RUN apt-get install -qy libffi-dev libxml2-dev libxslt-dev lib32z1-dev libssl-dev
 
-## pip china
-RUN cd root
-RUN mkdir .pip 
-COPY pip.conf ./pip/
-
 ## Scrapy
-RUN pip install lxml scrapy scrapyjs
+RUN pip install -i http://pypi.douban.com/simple/ lxml scrapy scrapyjs
